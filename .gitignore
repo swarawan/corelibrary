@@ -1,0 +1,13 @@
+#.gitlab-ci.yml
+
+.idea
+*.iml
+.gradle
+/app
+/local.properties
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+
+deployLocal.sh

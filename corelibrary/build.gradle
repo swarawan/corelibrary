@@ -1,0 +1,53 @@
+apply plugin: 'com.android.library'
+
+apply from: "$rootDir/commonlib/libmodule.gradle"
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    api supportDependencies.appCompat
+    api supportDependencies.support
+    api supportDependencies.design
+    api supportDependencies.recyclerView
+
+    api libraries.dagger
+    kapt libraries.daggerCompiler
+    api libraries.eventBus
+    api(libraries.glideOkHttp3) {
+        exclude group: 'glide-parent'
+    }
+    api libraries.glide
+    api libraries.gson
+    api libraries.okHttp3
+    api libraries.okHttp3Logging
+    api libraries.okHttp3UrlConnection
+
+    api libraries.retrofit
+    api libraries.retrofitGson
+    api libraries.retrofitRx2Adapter
+
+    api libraries.rxBindingPlatformKotlin
+    api libraries.rxBindingSupportKotlin
+
+    api libraries.rxJava2
+    api libraries.rxAndroid2
+
+//    api libraries.kotlinJre7
+    api libraries.anko
+    api libraries.ankoCommon
+
+    api libraries.mixpanel
+
+    api libraries.multidex
+
+    api libraries.firebaseCore
+    api libraries.firebaseRemoteConfig
+    api libraries.firebaseAuth
+    api libraries.firebaseRealtimeDatabase
+
+    api libraries.googleLocation
+    api libraries.googleAuth
+    api libraries.googleBaseClient
+
+    testImplementation testLibraries.junit
+}

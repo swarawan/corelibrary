@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="okhttp_log_level" translatable="false" type="string" />
+    <item name="map_key" translatable="false" type="string" />
+    <item name="remote_config_cache_expiry_time" type="integer" />
+    <item name="server_url" translatable="false" type="string" />
+</resources>

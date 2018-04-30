@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultMap>
+    <entry>
+        <key>mieayam_search</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>mieayam_add_store</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>mieayam_donation</key>
+        <value>true</value>
+    </entry>
+</defaultMap>
