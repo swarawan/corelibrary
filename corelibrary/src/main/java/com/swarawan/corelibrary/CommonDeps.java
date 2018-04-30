@@ -16,9 +16,6 @@ import okhttp3.OkHttpClient;
 @Singleton
 public interface CommonDeps {
 
-    @Named("glideNonCacheOkHttpClient")
-    OkHttpClient glideNonCacheOkHttpClient();
-
     EventBus getEventBus();
 
     void inject(CoreActivity coreActivity);
