@@ -23,3 +23,11 @@ inline fun EditText.rightCompoundListener(crossinline func: () -> Unit) {
         }
     }
 }
+
+fun EditText.isEmpty(): Boolean {
+    return this.length() == 0
+}
+
+fun EditText.isNotEmpty(): Boolean {
+    return this.length() > 0
+}

@@ -11,8 +11,14 @@ import android.view.ViewTreeObserver
 import android.view.Window
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.ImageView
 import org.jetbrains.anko.contentView
+import java.math.BigDecimal
+import java.math.RoundingMode
+import java.text.NumberFormat
+import java.util.Collections
+import java.util.Locale
 
 /**
  * Created by rioswarawan on 2/23/18.
@@ -102,5 +108,18 @@ fun ImageView.setDrawableVectorCompat(@DrawableRes drawableId: Int) {
         )
     } else {
         this.setImageResource(drawableId)
+    }
+}
+
+fun BigDecimal.getCurrencyFormat(): String {
+    return try {
+        val display: BigDecimal = this.setScale(2, RoundingMode.HALF_EVEN)
+        val numberFormat = NumberFormat.getInstance(Locale("id", "ID")).apply {
+            minimumFractionDigits = 0
+            maximumFractionDigits = 2
+        }
+        "Rp ${numberFormat.format(display.toDouble())}"
+    } catch (ex: Exception) {
+        "Rp 0"
     }
 }
