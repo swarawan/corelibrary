@@ -46,6 +46,14 @@ abstract class CoreActivity : OptimizedAppCompatActivity() {
 
     protected abstract fun onViewReady(savedInstanceState: Bundle?)
 
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            android.R.id.home -> onBackPressed()
+            else -> return false
+        }
+        return true
+    }
+
     protected open fun getTransparentBackgroundDialog(): Dialog {
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
