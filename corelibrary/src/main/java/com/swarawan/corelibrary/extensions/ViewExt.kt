@@ -123,3 +123,29 @@ fun BigDecimal.getCurrencyFormat(): String {
         "Rp 0"
     }
 }
+
+fun Int.getCurrencyFormat(): String {
+    return try {
+        val display: BigDecimal = BigDecimal(this).setScale(2, RoundingMode.HALF_EVEN)
+        val numberFormat = NumberFormat.getInstance(Locale("id", "ID")).apply {
+            minimumFractionDigits = 0
+            maximumFractionDigits = 2
+        }
+        "Rp ${numberFormat.format(display.toDouble())}"
+    } catch (ex: Exception) {
+        "Rp 0"
+    }
+}
+
+fun String.getCurrencyFormat(): String {
+    return try {
+        val display: BigDecimal = BigDecimal(this).setScale(2, RoundingMode.HALF_EVEN)
+        val numberFormat = NumberFormat.getInstance(Locale("id", "ID")).apply {
+            minimumFractionDigits = 0
+            maximumFractionDigits = 2
+        }
+        "Rp ${numberFormat.format(display.toDouble())}"
+    } catch (ex: Exception) {
+        "Rp 0"
+    }
+}
