@@ -21,7 +21,7 @@ class FirebaseRemoteConfigService(val context: Context,
 
     private var isInitialized = false
 
-    init {
+    fun init() {
         val cacheTime = when (firebaseRemoteConfig.info.lastFetchStatus) {
             LAST_FETCH_STATUS_SUCCESS -> {
                 CoreLog.d(TAG, "remote config fetch was SUCCESS")

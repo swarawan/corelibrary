@@ -10,6 +10,7 @@ import android.provider.Settings
 import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
 import android.support.v4.content.ContextCompat
+import android.support.v7.app.AlertDialog
 import android.support.v7.content.res.AppCompatResources
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -95,4 +96,52 @@ fun Context.getProviderEnabled(): String {
         locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER) -> LocationManager.NETWORK_PROVIDER
         else -> TextUtils.BLANK
     }
+}
+
+fun Activity.showDialog(title:String, message: String, cancelable: Boolean = false,
+                        positiveButton: String, action: () -> Unit = {}) {
+
+    val dialogBuilder = AlertDialog.Builder(this).apply {
+        setTitle(title)
+        setMessage(message)
+        setCancelable(cancelable)
+        setPositiveButton(positiveButton, { dialog, _ ->
+            action()
+            dialog.dismiss()
+        })
+    }
+    dialogBuilder.create().show()
+}
+
+fun Activity.showDialog(message: String, cancelable: Boolean = false,
+                        positiveButton: String, action: () -> Unit = {}) {
+
+    val dialogBuilder = AlertDialog.Builder(this).apply {
+        setMessage(message)
+        setCancelable(cancelable)
+        setPositiveButton(positiveButton, { dialog, _ ->
+            action()
+            dialog.dismiss()
+        })
+    }
+    dialogBuilder.create().show()
+}
+
+fun Activity.showDialog(message: String, cancelable: Boolean = false,
+                        positiveButton: String, positiveAction: () -> Unit = {},
+                        negativeButton: String, negativeAction: () -> Unit = {}) {
+
+    val dialogBuilder = AlertDialog.Builder(this).apply {
+        setMessage(message)
+        setCancelable(cancelable)
+        setPositiveButton(positiveButton, { dialog, _ ->
+            positiveAction()
+            dialog.dismiss()
+        })
+        setNegativeButton(negativeButton, { dialog, _ ->
+            negativeAction()
+            dialog.dismiss()
+        })
+    }
+    dialogBuilder.create().show()
 }
