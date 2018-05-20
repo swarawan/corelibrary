@@ -1,21 +1,29 @@
 package com.swarawan.corelibrary.extensions
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.pm.PackageManager
+import android.database.Cursor
 import android.location.LocationManager
+import android.net.Uri
 import android.os.Build
+import android.provider.MediaStore
 import android.provider.Settings
 import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.content.res.AppCompatResources
+import android.text.Html
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import com.swarawan.corelibrary.R
 import com.swarawan.corelibrary.log.CoreLog
 import com.swarawan.corelibrary.utils.TextUtils
+import java.text.SimpleDateFormat
+import java.util.Date
 
 /**
  * Created by rioswarawan on 2/26/18.
@@ -98,7 +106,7 @@ fun Context.getProviderEnabled(): String {
     }
 }
 
-fun Activity.showDialog(title:String, message: String, cancelable: Boolean = false,
+fun Activity.showDialog(title: String, message: String, cancelable: Boolean = false,
                         positiveButton: String, action: () -> Unit = {}) {
 
     val dialogBuilder = AlertDialog.Builder(this).apply {
@@ -144,4 +152,32 @@ fun Activity.showDialog(message: String, cancelable: Boolean = false,
         })
     }
     dialogBuilder.create().show()
+}
+
+fun Uri.getReadPath(context: Context): String {
+    val realPath: String
+    val cursor: Cursor = context.contentResolver.query(this, null, null, null, null)
+    when (cursor) {
+        null -> realPath = this.path
+        else -> {
+            cursor.moveToFirst()
+            val id: Int = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
+            realPath = cursor.getString(id)
+            cursor.close()
+        }
+    }
+    return realPath
+}
+
+@SuppressLint("SimpleDateFormat")
+fun Date.getCurrentDateString(context: Context, defaultFormat: String = "dd-MM-yyyy"): String {
+    val dateFormat = SimpleDateFormat(defaultFormat)
+    return dateFormat.format(this)
+}
+
+fun String.fromHtml(): String = when {
+    Build.VERSION.SDK_INT >= Build.VERSION_CODES.N ->
+        Html.fromHtml(this, Html.FROM_HTML_MODE_COMPACT).toString()
+    else ->
+        Html.fromHtml(this).toString()
 }
