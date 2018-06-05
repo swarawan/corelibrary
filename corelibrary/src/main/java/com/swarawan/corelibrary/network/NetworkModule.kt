@@ -92,7 +92,7 @@ class NetworkModule {
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .client(okHttpClient)
-                    .baseUrl(config.baseUrl + "/")
+                    .baseUrl(config.baseUrl)
                     .build()
 
     @Provides

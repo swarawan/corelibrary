@@ -5,10 +5,12 @@ import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.pm.PackageManager
+import android.content.res.AssetManager
 import android.database.Cursor
 import android.location.LocationManager
 import android.net.Uri
 import android.os.Build
+import android.os.Environment
 import android.provider.MediaStore
 import android.provider.Settings
 import android.support.annotation.ColorRes
@@ -22,6 +24,8 @@ import android.view.inputmethod.InputMethodManager
 import com.swarawan.corelibrary.R
 import com.swarawan.corelibrary.log.CoreLog
 import com.swarawan.corelibrary.utils.TextUtils
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -180,4 +184,24 @@ fun String.fromHtml(): String = when {
         Html.fromHtml(this, Html.FROM_HTML_MODE_COMPACT).toString()
     else ->
         Html.fromHtml(this).toString()
+}
+
+fun Context.isStorageReadWriteable(): Boolean =
+        Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED, true)
+
+fun Context.readFileFromAsset(path: String): String {
+    val stringBuilder = StringBuilder()
+    try {
+        val reader = BufferedReader(
+                InputStreamReader(this.assets.open(path, AssetManager.ACCESS_BUFFER), "UTF-8"))
+        var line = reader.readLine()
+        while (null != line) {
+            stringBuilder.append(line)
+            line = reader.readLine()
+        }
+        reader.close()
+    } catch (ex: Exception) {
+        return TextUtils.BLANK
+    }
+    return stringBuilder.toString()
 }
