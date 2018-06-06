@@ -1,7 +1,8 @@
 @file:JvmName("FirebaseTokenRetriever")
 
-package com.swarawan.corelibrary.firebase.auth
+package com.swarawan.corelibrary.firebase.iid
 
+import com.swarawan.corelibrary.firebase.FirebaseConstant
 import com.swarawan.corelibrary.sharedprefs.CorePreferences
 
 /**
@@ -10,6 +11,6 @@ import com.swarawan.corelibrary.sharedprefs.CorePreferences
 class FirebaseTokenRetriever(private val corePreferences: CorePreferences) {
 
     fun getAuthToken(): String {
-        return corePreferences.getString(FirebaseAuthConstant.FIREBASE_ID_TOKEN)
+        return corePreferences.getString(FirebaseConstant.FIREBASE_ID_TOKEN)
     }
 }

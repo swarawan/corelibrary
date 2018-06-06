@@ -44,6 +44,7 @@ dependencies {
     api libraries.firebaseRemoteConfig
     api libraries.firebaseAuth
     api libraries.firebaseRealtimeDatabase
+    api libraries.firebaseMessaging
 
     api libraries.googleLocation
     api libraries.googleAuth

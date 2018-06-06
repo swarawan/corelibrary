@@ -13,8 +13,9 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.swarawan.corelibrary.R
 import com.swarawan.corelibrary.firebase.auth.FirebaseAuthConfigService
-import com.swarawan.corelibrary.firebase.auth.FirebaseTokenRetriever
+import com.swarawan.corelibrary.firebase.iid.FirebaseTokenRetriever
 import com.swarawan.corelibrary.firebase.config.FirebaseRemoteConfigService
+import com.swarawan.corelibrary.firebase.messaging.NotificationHelper
 import com.swarawan.corelibrary.sharedprefs.CorePreferences
 import dagger.Module
 import dagger.Provides
@@ -83,4 +84,8 @@ class FirebaseModule {
     fun providesFirebaseRealtimeDatabaseReference(firebaseDatabase: FirebaseDatabase): DatabaseReference =
             firebaseDatabase.reference
 
+    @Provides
+    @Singleton
+    fun providesNotificationHelper(context: Context): NotificationHelper =
+            NotificationHelper(context)
 }
