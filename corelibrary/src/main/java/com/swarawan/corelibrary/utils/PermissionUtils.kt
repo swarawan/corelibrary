@@ -1,3 +1,5 @@
+@file:JvmName("PermissionUtils")
+
 package com.swarawan.corelibrary.utils
 
 import android.Manifest
