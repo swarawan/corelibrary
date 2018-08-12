@@ -32,7 +32,6 @@ dependencies {
     api libraries.rxJava2
     api libraries.rxAndroid2
 
-//    api libraries.kotlinJre7
     api libraries.anko
     api libraries.ankoCommon
 
@@ -49,6 +48,8 @@ dependencies {
     api libraries.googleLocation
     api libraries.googleAuth
     api libraries.googleBaseClient
+
+    api libraries.bluetooth
 
     testImplementation testLibraries.junit
 }

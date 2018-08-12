@@ -117,10 +117,10 @@ fun Activity.showDialog(title: String, message: String, cancelable: Boolean = fa
         setTitle(title)
         setMessage(message)
         setCancelable(cancelable)
-        setPositiveButton(positiveButton, { dialog, _ ->
+        setPositiveButton(positiveButton) { dialog, _ ->
             action()
             dialog.dismiss()
-        })
+        }
     }
     dialogBuilder.create().show()
 }
@@ -131,10 +131,10 @@ fun Activity.showDialog(message: String, cancelable: Boolean = false,
     val dialogBuilder = AlertDialog.Builder(this).apply {
         setMessage(message)
         setCancelable(cancelable)
-        setPositiveButton(positiveButton, { dialog, _ ->
+        setPositiveButton(positiveButton) { dialog, _ ->
             action()
             dialog.dismiss()
-        })
+        }
     }
     dialogBuilder.create().show()
 }
@@ -146,14 +146,14 @@ fun Activity.showDialog(message: String, cancelable: Boolean = false,
     val dialogBuilder = AlertDialog.Builder(this).apply {
         setMessage(message)
         setCancelable(cancelable)
-        setPositiveButton(positiveButton, { dialog, _ ->
+        setPositiveButton(positiveButton) { dialog, _ ->
             positiveAction()
             dialog.dismiss()
-        })
-        setNegativeButton(negativeButton, { dialog, _ ->
+        }
+        setNegativeButton(negativeButton) { dialog, _ ->
             negativeAction()
             dialog.dismiss()
-        })
+        }
     }
     dialogBuilder.create().show()
 }

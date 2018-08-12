@@ -2,10 +2,13 @@
 
 package com.swarawan.corelibrary.base
 
+import android.app.Dialog
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.Fragment
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 
 /**
  * Created by rioswarawan on 2/12/18.
@@ -20,7 +23,7 @@ open class CoreFragment : Fragment() {
         handler = Handler()
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         rootView = view
     }
@@ -37,5 +40,13 @@ open class CoreFragment : Fragment() {
 
     fun postDelayed(runnable: Runnable, delayMillis: Long): Boolean {
         return handler?.postDelayed(runnable, delayMillis) ?: false
+    }
+
+    protected open fun getTransparentBackgroundDialog(): Dialog {
+        val dialog = Dialog(activity)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        return dialog
     }
 }
