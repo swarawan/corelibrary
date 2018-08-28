@@ -29,31 +29,6 @@ class FirebaseModule {
 
     @Provides
     @Singleton
-    fun providesGoogleSignInOptions(tokenRetriever: FirebaseTokenRetriever): GoogleSignInOptions =
-            GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    .requestIdToken(tokenRetriever.getAuthToken())
-                    .requestEmail()
-                    .requestId()
-                    .requestProfile()
-                    .build()
-
-    @Provides
-    @Singleton
-    fun providesGoogleSignInClient(context: Context, options: GoogleSignInOptions): GoogleSignInClient =
-            GoogleSignIn.getClient(context, options)
-
-    @Provides
-    @Singleton
-    fun provideGoogleAccount(context: Context): GoogleSignInAccount? =
-            GoogleSignIn.getLastSignedInAccount(context)
-
-    @Provides
-    @Singleton
-    fun providesFirebaseAuth(): FirebaseAuth =
-            FirebaseAuth.getInstance()
-
-    @Provides
-    @Singleton
     fun providesFirebaseConfigService(): FirebaseAuthConfigService =
             FirebaseAuthConfigService()
 
