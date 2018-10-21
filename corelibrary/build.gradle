@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-kapt'
 
 apply from: "$rootDir/commonlib/libmodule.gradle"
 
@@ -13,10 +14,10 @@ dependencies {
     api libraries.dagger
     kapt libraries.daggerCompiler
     api libraries.eventBus
-    api(libraries.glideOkHttp3) {
-        exclude group: 'glide-parent'
-    }
+
     api libraries.glide
+    kapt libraries.glideCompiler
+
     api libraries.gson
     api libraries.okHttp3
     api libraries.okHttp3Logging

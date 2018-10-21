@@ -19,7 +19,7 @@ class FirebaseRemoteConfigService(val context: Context,
         const val TAG = "FirebaseRemoteConfig"
     }
 
-    private var isInitialized = false
+    private var isInitialized    = false
 
     fun init() {
         val cacheTime = when (firebaseRemoteConfig.info.lastFetchStatus) {
